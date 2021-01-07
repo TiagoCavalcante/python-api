@@ -8,13 +8,13 @@ def get_users():
 	response.status = 200
 	return json.dumps(users)
 
-@route('/users/<id:int>', method='GET')
-def get_user(id):
+@route('/users/<user_id:int>', method='GET')
+def get_user(user_id):
 	for user in users:
-		if user['id'] == id:
+		if user['id'] == user_id:
 			response.status = 200
 			return json.dumps(user)
-	
+
 	response.status = 404
 	return json.dumps({'message': 'User not found'})
 
@@ -40,14 +40,14 @@ def create_user():
 	response.status = 201
 	return json.dumps({'id': len(users) - 1})
 
-@route('/users/<id:int>', method='PUT')
-def update_user(id):
+@route('/users/<user_id:int>', method='PUT')
+def update_user(user_id):
 	if request.json is None:
 		response.status = 400
 		return json.dumps({'message': '\'application/json\' body missing'})
 
 	for i, user in enumerate(users):
-		if user['id'] == id:
+		if user['id'] == user_id:
 			if 'name' in request.json:
 				users[i]['name'] = request.json['name']
 			if 'email' in request.json:
@@ -59,10 +59,10 @@ def update_user(id):
 	response.status = 404
 	return json.dumps({'message': 'User not found'})
 
-@route('/users/<id:int>', method='DELETE')
-def delete_user(id):
+@route('/users/<user_id:int>', method='DELETE')
+def delete_user(user_id):
 	for i, user in enumerate(users):
-		if user['id'] == id:
+		if user['id'] == user_id:
 			del users[i]
 
 			response.status = 200

@@ -10,12 +10,12 @@ users = []
 def get_users():
 	return jsonify(users), 200
 
-@app.route('/users/<int:id>', methods=['GET'])
-def get_user(id):
+@app.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
 	for user in users:
-		if user['id'] == id:
+		if user['id'] == user_id:
 			return jsonify(user), 200
-	
+
 	return jsonify({'message': 'User not found'}), 404
 
 @app.route('/users', methods=['POST'])
@@ -33,15 +33,15 @@ def create_user():
 		'email': request.json['email']
 	})
 
-	return jsonify({'id': len(users) - 1}), 201    	
+	return jsonify({'id': len(users) - 1}), 201
 
-@app.route('/users/<int:id>', methods=['PUT'])
-def update_user(id):
+@app.route('/users/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
 	if not request.json:
 		return jsonify({'message': '\'application/json\' body missing or empty'}), 400
 
 	for i, user in enumerate(users):
-		if user['id'] == id:
+		if user['id'] == user_id:
 			if 'name' in request.json:
 				users[i]['name'] = request.json['name']
 			if 'email' in request.json:
@@ -51,10 +51,10 @@ def update_user(id):
 	
 	return jsonify({'message': 'User not found'}), 404
 
-@app.route('/users/<int:id>', methods=['DELETE'])
-def delete_user(id):
+@app.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
 	for i, user in enumerate(users):
-		if user['id'] == id:
+		if user['id'] == user_id:
 			del users[i]
 
 			return jsonify({}), 200
