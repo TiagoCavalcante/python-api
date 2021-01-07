@@ -58,7 +58,7 @@ def delete_user(user_id):
 			del users[i]
 
 			return jsonify({}), 200
-	
+
 	return jsonify({'message': 'User not found'}), 404
 
 # run

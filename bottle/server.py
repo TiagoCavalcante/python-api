@@ -67,7 +67,7 @@ def delete_user(user_id):
 
 			response.status = 200
 			return json.dumps({})
-	
+
 	response.status = 404
 	return json.dumps({'message': 'User not found'})
 
