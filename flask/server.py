@@ -48,7 +48,7 @@ def update_user(user_id):
 				users[i]['email'] = request.json['email']
 
 			return jsonify({}), 200
-	
+
 	return jsonify({'message': 'User not found'}), 404
 
 @app.route('/users/<int:user_id>', methods=['DELETE'])
