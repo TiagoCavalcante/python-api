@@ -1,5 +1,5 @@
 # python-api
-An API for register users wrote in Python with 2 versions: Flask and Bottle
+An API to register users wrote in Python with 2 versions: Flask and Bottle
 
 ## Install dependencies
 Search how to install Flask and Bottlo on your system
